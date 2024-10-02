@@ -18,7 +18,6 @@ class MainActivity : AppCompatActivity() {
         // eg. Log.d("function output", getTestDataArray().toString())
         Log.d("first function output", getTestDataArray().toString())
         Log.d("second function output", averageLessThanMedian(listOf(1.0, 3.0, 4.0, 5.0, 6.0)).toString())
-
     }
 
 
@@ -44,20 +43,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     // Create a view from an item in a collection, but recycle if possible (similar to an AdapterView's adapter)
-    private fun getView(position: Int, recycledView: View?, collection: List<Int>, context: Context): View {
-        val textView: TextView
+    private fun getView(position: Int, recycledView: View?, collection: List<Int>, context: Context): View = (recycledView as? TextView ?: TextView(context).apply {
+        setPadding(5, 10, 10, 0)
+        textSize = 22f
+        }).apply {
 
-        if (recycledView != null) {
-            textView = recycledView as TextView
-        } else {
-            textView = TextView(context)
-            textView.setPadding(5, 10, 10, 0)
-            textView.textSize = 22f
-        }
-
-        textView.text = collection[position].toString()
-
-        return textView
+        text = collection[position].toString()
     }
 
 }
